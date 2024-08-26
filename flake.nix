@@ -7,6 +7,7 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = { self, nixpkgs, ... }@attrs:
@@ -15,8 +16,8 @@
       nixosConfigurations.avell = nixpkgs.lib.nixosSystem {
         specialArgs = attrs;
         modules = [
-          ./configuration/default.nix
-          ./home/nixos.nix
+          ./configuration
+          ./home
           ./hosts/avell/avell.nix
         ];
       };

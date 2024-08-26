@@ -1,7 +1,8 @@
-{ config, pkgs, home-manager, attrs, ... }:
+{ config, pkgs, home-manager, catppuccin, attrs, ... }:
 {
   imports = [
     home-manager.nixosModules.home-manager
+    catppuccin.nixosModules.catppuccin
     ./modules/hyprland.nix
   ];
 
@@ -10,17 +11,21 @@
   home-manager.backupFileExtension = "bak";
 
   home-manager.users.mrwbarg = {
+    imports = [
+      catppuccin.homeManagerModules.catppuccin
+    ];
+    catppuccin.enable = true;
     home = {
       stateVersion = "24.05";
       username = "mrwbarg";
       homeDirectory = "/home/mrwbarg";
     };
-    
-    dconf.settings = {
-      "org/gnome/mutter" = {
-        experimental-features = [ "scale-monitor-framebuffer" ];
-      };
+
+    home.file.".local/share/rofi/themes" = {
+      recursive = true;
+      source = ./modules/rofi;
     };
+
     programs = {
       home-manager.enable = true;
       git = {
@@ -32,6 +37,10 @@
       vscode.enable = true;
       fish.enable = true;
       kitty.enable = true;
+      rofi = {
+        enable = true;
+        package = pkgs.rofi-wayland;
+      };
     };
   };
 }

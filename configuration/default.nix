@@ -40,13 +40,6 @@
         wayland = true;
       };
     };
-    desktopManager = {
-      gnome = {
-        enable = true;
-        extraGSettingsOverridePackages = [ pkgs.gnome.mutter ];
-
-      };
-    };
   };
 
   hardware.pulseaudio.enable = false;
