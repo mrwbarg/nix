@@ -5,6 +5,9 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./hyprland.nix
+  ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -28,9 +31,23 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver = { 
+    enable = true;
+    excludePackages = with pkgs; [ xterm ];
+    displayManager = {
+      gdm = {
+        enable = true;
+        wayland = true;
+      };
+    };
+    desktopManager = {
+      gnome = {
+        enable = true;
+        extraGSettingsOverridePackages = [ pkgs.gnome.mutter ];
+
+      };
+    };
+  };
 
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -56,6 +73,7 @@
     fish
     neovim
     git
+    nixpkgs-fmt
   ];
 
   services.openssh.enable = true;

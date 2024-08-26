@@ -2,6 +2,7 @@
 {
   imports = [
     home-manager.nixosModules.home-manager
+    ./modules/hyprland.nix
   ];
 
   home-manager.useGlobalPkgs = true;
@@ -14,6 +15,12 @@
       username = "mrwbarg";
       homeDirectory = "/home/mrwbarg";
     };
+    
+    dconf.settings = {
+      "org/gnome/mutter" = {
+        experimental-features = [ "scale-monitor-framebuffer" ];
+      };
+    };
     programs = {
       home-manager.enable = true;
       git = {
@@ -24,6 +31,7 @@
       firefox.enable = true;
       vscode.enable = true;
       fish.enable = true;
+      kitty.enable = true;
     };
   };
 }
