@@ -26,6 +26,23 @@
       source = ./modules/rofi;
     };
 
+    gtk = {
+      enable = true;
+      font = {
+        name = "FiraCode Nerd Font";
+        size = 10;
+      };
+      catppuccin.enable = true;
+
+    };
+
+    home.pointerCursor = {
+      gtk.enable = true;
+      name = "catppuccin-mocha-dark-cursors";
+      package = pkgs.catppuccin-cursors.mochaDark;
+      size = 24;
+    };
+
     programs = {
       home-manager.enable = true;
       git = {
