@@ -4,7 +4,6 @@
     home-manager.nixosModules.home-manager
   ];
 
-
   home-manager.users.mrwbarg = {
     home.packages = with pkgs; [
       kitty
@@ -12,13 +11,195 @@
       dunst
       swww
       networkmanagerapplet
+      networkmanager
       gnome.nautilus
       pkgs.nerdfonts
+      dmenu
+      networkmanager_dmenu
     ];
+
+    programs.waybar = {
+      enable = true;
+      catppuccin.enable = true;
+      style = ''
+        * {
+          font-family: FiraCode Nerd Font;
+          font-size: 17px;
+          min-height: 0;
+        }
+
+        #waybar {
+          background: transparent;
+          color: @text;
+          margin: 8px 8px;
+        }
+
+        #workspaces {
+          border-radius: 1rem;
+          margin: 5px;
+          background-color: @surface0;
+          margin-left: 1rem;
+          padding-bottom: 0.1rem;
+          padding-top: 0.1rem;
+        }
+
+        #workspaces button {
+          color: @mantle;
+          border-radius: 1rem;
+          padding: 0.2rem 1.0rem 0.2rem 1.0rem;
+          margin-top: 0.1rem;
+          margin-bottom: 0.1rem;
+        }
+
+        #workspaces button.active {
+          color: @lavender;
+          border-radius: 1rem;
+          padding: 0.2rem 0.6rem 0.2rem 0.6rem;
+          margin-left: 0.6rem;
+          margin-right: 0.6rem;
+          background-color: @surface1;
+        }
+
+        #workspaces button:hover {
+          color: @pink;
+          border-radius: 1rem;
+          padding: 0.2rem 0.6rem 0.2rem 0.6rem;
+          background-color: @surface1;
+        }
+
+        #clock,
+        #battery,
+        #pulseaudio {
+          background-color: @surface0;
+          padding: 0.5rem 1rem;
+          margin: 5px 0;
+        }
+
+        #clock {
+          color: @lavender;
+          border-radius: 1rem;
+          padding-left: 2rem;
+          padding-right: 2rem;
+          background-color: @surface0;
+        }
+
+        #battery {
+          color: @blue;
+          border-radius: 1rem;
+          margin-right: 5px;
+          background-color: @surface0;
+          padding-bottom: 0.1rem;
+          padding-top: 0.1rem;
+        }
+
+        #battery.charging {
+          color: @green;
+        }
+
+        #battery.warning:not(.charging) {
+          color: @red;
+        }
+
+        #network {
+          color: @lavender;
+          border-radius: 1rem;
+          padding: 0.2rem 0.6rem 0.2rem 0.6rem;
+          background-color: @surface1;
+          margin-right: 5px;
+        }
+
+        #clock,
+        #battery,
+        #network,
+        #pulseaudio {
+          background-color: @surface0;
+          padding: 0.5rem 1rem;
+          margin: 5px 0;
+        }
+
+        #clock {
+          color: @lavender;
+          border-radius: 1rem;
+          padding-left: 2rem;
+          padding-right: 2rem;
+          background-color: @surface0;
+        }
+
+        #battery {
+          color: @blue;
+          border-radius: 1rem;
+          margin-right: 5px;
+          margin-left: 5px;
+          background-color: @surface0;
+          padding-bottom: 0.1rem;
+          padding-top: 0.1rem;
+        }
+
+        #battery.charging {
+          color: @green;
+        }
+
+        #battery.warning:not(.charging) {
+          color: @red;
+        }
+      '';
+      settings = {
+        mainBar = {
+          layer = "top";
+          position = "top";
+          height = 30;
+          modules-left = [ "hyprland/workspaces" "custom/weather"];
+          modules-center = [ "clock" ];
+          modules-right = [ "pulseaudio" "network" "battery" "custom/power" ];
+
+          "hyprland/workspaces" = {
+            format = "{name}";
+            persistent-workspaces = {
+              "*" = 5;
+            };
+          };
+
+          "clock" = {
+            format = "{:%Y-%m-%d %H:%M:%S}";
+            interval = 1;
+          };
+
+          "battery" = {
+            "interval" = 1;
+            "states" = {
+              "warning" = 50;
+              "critical" = 30;
+            };
+            "format" = "{capacity}% {icon}";
+            "format-icons" = [ " " " " " " " " " " ];
+            "max-length" = 30;
+          };
+
+          "network" = {
+            "interface" = "wlo1";
+            "format-wifi" = "{signalStrength}%  ";
+            "format-disconnected" = "0%  ";
+            "tooltip-format-wifi" = "{essid}";
+            "tooltip-format-disconnected" = "Disconnected";
+            "max-length" = 50;
+            "on-click" = "networkmanager_dmenu";
+          };
+
+          "custom/weather" = {
+            "exec" = "~/.config/waybar/scripts/get_weather.sh Berlin+Germany";
+            "return-type" = "json";
+            "format" = "{}";
+            "tooltip" = true;
+            "interval" = 3600;
+          };
+        };
+      };
+    };
 
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enable = true;
+      catppuccin.enable = true;
       settings = {
         autogenerated = 0;
         "$mod" = "SUPER";
@@ -28,7 +209,7 @@
           "$mod, W, killactive"
           "$mod, O, exit"
           "$mod, E, exec, nautilus"
-          ''$mod, SPACE, exec, rofi -show drun -show-icons -theme-str '@import "catppuccin-mocha.rasi"' ''
+          ''$mod, SPACE, exec, rofi -show drun -show-icons ''
 
           # workspaces
           "$mod, H, workspace, -1"

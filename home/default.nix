@@ -1,4 +1,4 @@
-{ config, pkgs, home-manager, catppuccin, attrs, ... }:
+{ config, pkgs, home-manager, catppuccin, attrs, lib, ... }:
 {
   imports = [
     home-manager.nixosModules.home-manager
@@ -23,8 +23,12 @@
 
     home.file.".local/share/rofi/themes" = {
       recursive = true;
-      source = ./modules/rofi;
+      source = ./modules/rofi/themes;
     };
+    home.file.".config/networkmanager-dmenu/config.ini" = {
+      source = ./modules/rofi/config.ini;
+    };
+
 
     gtk = {
       enable = true;
@@ -57,6 +61,21 @@
       rofi = {
         enable = true;
         package = pkgs.rofi-wayland;
+        extraConfig =
+          {
+            modi = "drun,calc,powermenu:${pkgs.rofi-power-menu}/bin/rofi-power-menu";
+            sidebar-mode = true;
+            display-drun = "   Apps ";
+            display-calc = " Calculator";
+            display-powermenu = "  Power";
+          };
+        theme = lib.mkForce "~/.local/share/rofi/themes/catppuccin-mocha.rasi";
+        plugins = [
+          pkgs.rofi-power-menu
+          (pkgs.rofi-calc.override {
+            rofi-unwrapped = pkgs.rofi-wayland-unwrapped;
+          })
+        ];
       };
     };
   };
