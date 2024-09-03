@@ -10,7 +10,7 @@
   home-manager.useUserPackages = true;
   home-manager.backupFileExtension = "bak";
 
-  home-manager.users.mrwbarg = {
+  home-manager.users.mrwbarg = { config, lib, ... }: {
     imports = [
       catppuccin.homeManagerModules.catppuccin
     ];
@@ -28,7 +28,6 @@
     home.file.".config/networkmanager-dmenu/config.ini" = {
       source = ./modules/rofi/config.ini;
     };
-
 
     gtk = {
       enable = true;
@@ -61,13 +60,20 @@
       rofi = {
         enable = true;
         package = pkgs.rofi-wayland;
-        extraConfig =
-          {
+        extraConfig = let 
+          inherit (config.lib.formats.rasi) mkLiteral;
+         in
+         {
             modi = "drun,calc,powermenu:${pkgs.rofi-power-menu}/bin/rofi-power-menu";
             sidebar-mode = true;
             display-drun = "   Apps ";
             display-calc = " Calculator";
-            display-powermenu = "  Power";
+            "// this-is-a-work-around" = mkLiteral ''
+            
+powermenu {
+  display-name: " Power";
+}
+            // '';
           };
         theme = lib.mkForce "~/.local/share/rofi/themes/catppuccin-mocha.rasi";
         plugins = [
