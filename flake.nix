@@ -10,12 +10,13 @@
     catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = { self, nixpkgs, ... }@attrs:
+  outputs = { self, nixpkgs, catppuccin, ... }@attrs:
     {
 
       nixosConfigurations.avell = nixpkgs.lib.nixosSystem {
         specialArgs = attrs;
         modules = [
+          catppuccin.nixosModules.catppuccin
           ./configuration
           ./home
           ./hosts/avell/avell.nix

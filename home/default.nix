@@ -2,7 +2,6 @@
 {
   imports = [
     home-manager.nixosModules.home-manager
-    catppuccin.nixosModules.catppuccin
     ./modules/hyprland.nix
   ];
 
@@ -46,6 +45,28 @@
       size = 24;
     };
 
+    services = {
+      dunst = {
+        enable = true;
+        catppuccin.enable = true;
+        settings = {
+          global = {
+            width = 400;
+            height = 400;
+            offset = "8x0";
+            origin = "top-right";
+            transparency = 10;
+            gap_size = 2;
+            corner_radius = 5;
+            frame_width = 1;
+            font = "FiraCode Nerd Font 10";
+          };
+
+        };
+
+      };
+    };
+
     programs = {
       home-manager.enable = true;
       git = {
@@ -60,11 +81,12 @@
       rofi = {
         enable = true;
         package = pkgs.rofi-wayland;
-        extraConfig = let 
-          inherit (config.lib.formats.rasi) mkLiteral;
-         in
-         {
-            modi = "drun,calc,powermenu:${pkgs.rofi-power-menu}/bin/rofi-power-menu";
+        extraConfig =
+          let
+            inherit (config.lib.formats.rasi) mkLiteral;
+          in
+          {
+            modi = "drun,calc,powermenu:${pkgs.rofi-power-menu}/bin/rofi-power-menu --choices=logout/hibernate/suspend/reboot/shutdown";
             sidebar-mode = true;
             display-drun = "   Apps ";
             display-calc = " Calculator";

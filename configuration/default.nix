@@ -31,13 +31,17 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-  services.xserver = { 
+  services.xserver = {
     enable = true;
     excludePackages = with pkgs; [ xterm ];
+  };
+
+  services = {
     displayManager = {
-      gdm = {
+      sddm = {
+        theme = "catppuccin-mocha";
         enable = true;
-        wayland = true;
+        package = pkgs.kdePackages.sddm;
       };
     };
   };
@@ -52,7 +56,7 @@
   };
 
   programs.fish.enable = true;
-  
+
   users.users.mrwbarg = {
     isNormalUser = true;
     description = "Mauricio Barg";
@@ -67,6 +71,13 @@
     neovim
     git
     nixpkgs-fmt
+    (catppuccin-sddm.override {
+      flavor = "mocha";
+      font = "FiraCode Nerd Font";
+      fontSize = "10";
+      loginBackground = true;
+    })
+
   ];
 
   services.openssh.enable = true;

@@ -122,6 +122,8 @@
         #battery.warning:not(.charging) {
           color: @red;
         }
+
+
       '';
       settings = {
         mainBar = {
