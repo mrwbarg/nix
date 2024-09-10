@@ -24,6 +24,10 @@
       recursive = true;
       source = ./modules/rofi/themes;
     };
+    home.file.".local/share/walpapers" = {
+      recursive = true;
+      source = ./walpapers;
+    };
     home.file.".config/networkmanager-dmenu/config.ini" = {
       source = ./modules/rofi/config.ini;
     };
@@ -74,10 +78,30 @@
         userEmail = "mrwbarg@gmail.com";
         userName = "Mauricio Barg";
       };
-      firefox.enable = true;
-      vscode.enable = true;
+      firefox = {
+        enable = true;
+        policies = {
+          ExtensionSettings = {
+            "*".installation_mode = "blocked";
+            # uBlock Origin:
+            "uBlock0@raymondhill.net" = {
+              install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+              installation_mode = "force_installed";
+            };
+            # Privacy Badger:
+            "jid1-MnnxcxisBPnSXQ@jetpack" = {
+              install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
+              installation_mode = "force_installed";
+            };
+          };
+        };
+      };
+      vscode = {
+        enable = true;
+      };
       fish.enable = true;
       kitty.enable = true;
+
       rofi = {
         enable = true;
         package = pkgs.rofi-wayland;

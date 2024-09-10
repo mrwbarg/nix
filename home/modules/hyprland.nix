@@ -9,7 +9,6 @@
       kitty
       waybar
       dunst
-      swww
       networkmanagerapplet
       networkmanager
       gnome.nautilus
@@ -17,6 +16,7 @@
       dmenu
       networkmanager_dmenu
       pavucontrol
+      swww
     ];
 
     programs.waybar = {
@@ -203,6 +203,10 @@
         decoration = {
           rounding = 5;
         };
+        misc = {
+          disable_hyprland_logo = true;
+          disable_splash_rendering = true;
+        };
 
         "$mod" = "SUPER";
         bind = [
@@ -247,6 +251,7 @@
           "waybar"
           "dunst"
           "hyprctl setcursor catppuccin-mocha-dark-cursors 24"
+          "swww-daemon && swww img ~/.local/share/walpapers/abstract-swirls.jpg"
         ];
       };
     };
