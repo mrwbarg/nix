@@ -1,8 +1,9 @@
-{ config, pkgs, home-manager, catppuccin, attrs, lib, ... }:
+{ config, pkgs, home-manager, catppuccin, attrs, lib, hyprpanel, ... }:
 {
   imports = [
     home-manager.nixosModules.home-manager
     ./modules/hyprland.nix
+    ./system/hyprpanel.nix
   ];
 
   home-manager.useGlobalPkgs = true;
