@@ -4,6 +4,7 @@
     home-manager.nixosModules.home-manager
     ./system/hyprland.nix
     ./system/hyprpanel.nix
+    ./system/rofi/default.nix
   ];
 
   home-manager.useGlobalPkgs = true;
@@ -14,32 +15,33 @@
     imports = [
       catppuccin.homeManagerModules.catppuccin
     ];
+
+    home.packages = with pkgs; [
+      gnome.nautilus
+      nerdfonts
+      swww
+    ];
+
     catppuccin.enable = true;
+
     home = {
       stateVersion = "24.05";
       username = "mrwbarg";
       homeDirectory = "/home/mrwbarg";
     };
 
-    home.file.".local/share/rofi/themes" = {
-      recursive = true;
-      source = ./modules/rofi/themes;
-    };
     home.file.".local/share/walpapers" = {
       recursive = true;
       source = ./walpapers;
     };
-    home.file.".config/networkmanager-dmenu/config.ini" = {
-      source = ./modules/rofi/config.ini;
-    };
 
     gtk = {
       enable = true;
+      catppuccin.enable = true;
       font = {
         name = "FiraCode Nerd Font";
         size = 10;
       };
-      catppuccin.enable = true;
 
     };
 
@@ -48,28 +50,6 @@
       name = "catppuccin-mocha-dark-cursors";
       package = pkgs.catppuccin-cursors.mochaDark;
       size = 24;
-    };
-
-    services = {
-      dunst = {
-        enable = true;
-        catppuccin.enable = true;
-        settings = {
-          global = {
-            width = 400;
-            height = 400;
-            offset = "8x0";
-            origin = "top-right";
-            transparency = 10;
-            gap_size = 2;
-            corner_radius = 5;
-            frame_width = 1;
-            font = "FiraCode Nerd Font 10";
-          };
-
-        };
-
-      };
     };
 
     programs = {
@@ -97,39 +77,9 @@
           };
         };
       };
-      vscode = {
-        enable = true;
-      };
+      vscode.enable = true;
       fish.enable = true;
       kitty.enable = true;
-
-      rofi = {
-        enable = true;
-        package = pkgs.rofi-wayland;
-        extraConfig =
-          let
-            inherit (config.lib.formats.rasi) mkLiteral;
-          in
-          {
-            modi = "drun,calc,powermenu:${pkgs.rofi-power-menu}/bin/rofi-power-menu --choices=logout/hibernate/suspend/reboot/shutdown";
-            sidebar-mode = true;
-            display-drun = "   Apps ";
-            display-calc = " Calculator";
-            "// this-is-a-work-around" = mkLiteral ''
-            
-powermenu {
-  display-name: " Power";
-}
-            // '';
-          };
-        theme = lib.mkForce "~/.local/share/rofi/themes/catppuccin-mocha.rasi";
-        plugins = [
-          pkgs.rofi-power-menu
-          (pkgs.rofi-calc.override {
-            rofi-unwrapped = pkgs.rofi-wayland-unwrapped;
-          })
-        ];
-      };
     };
   };
 }

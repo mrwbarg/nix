@@ -139,7 +139,7 @@
             "menus.volume.raiseMaximumVolume": true,
             "menus.clock.weather.location": "Rio de Janeiro",
             "menus.clock.weather.enabled": false,
-            "menus.dashboard.powermenu.avatar.image": "/home/mrwbarg/Downloads/profile.png",
+            "menus.dashboard.powermenu.avatar.image": "./profile.png",
             "menus.dashboard.stats.enable_gpu": false,
             "menus.dashboard.shortcuts.enabled": true,
             "menus.dashboard.directories.enabled": false,

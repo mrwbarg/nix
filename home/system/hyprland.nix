@@ -5,13 +5,6 @@
   ];
 
   home-manager.users.mrwbarg = {
-    home.packages = with pkgs; [
-      kitty
-      gnome.nautilus
-      nerdfonts
-      swww
-    ];
-
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enable = true;
@@ -30,6 +23,17 @@
           disable_hyprland_logo = true;
           disable_splash_rendering = true;
         };
+        input = {
+          kb_layout = "br";
+          kb_variant = "nodeadkeys";
+          natural_scroll = true;
+          touchpad = {
+            natural_scroll = true;
+          };
+        };
+        monitor = ",preferred,auto,1.25";
+
+        # binds
         "$mod" = "SUPER";
         bind = [
           # programs
@@ -57,15 +61,7 @@
           "$mod SHIFT, left, movetoworkspace, -1"
           "$mod SHIFT, right, movetoworkspace, +1"
         ];
-        input = {
-          kb_layout = "br";
-          kb_variant = "nodeadkeys";
-          natural_scroll = true;
-          touchpad = {
-            natural_scroll = true;
-          };
-        };
-        monitor = ",preferred,auto,1.25";
+
         exec-once = [
           "hyprpanel"
           "hyprctl setcursor catppuccin-mocha-dark-cursors 24"
