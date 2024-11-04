@@ -2,7 +2,7 @@
 {
   imports = [
     home-manager.nixosModules.home-manager
-    ./modules/hyprland.nix
+    ./system/hyprland.nix
     ./system/hyprpanel.nix
   ];
 

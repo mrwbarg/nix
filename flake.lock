@@ -59,7 +59,7 @@
       "inputs": {
         "ags": "ags",
         "nixpkgs": [
-          "nixpkgs-unstable"
+          "nixpkgs"
         ]
       },
       "locked": {
