@@ -17,9 +17,11 @@
     ];
 
     home.packages = with pkgs; [
+      ranger
       gnome.nautilus
       nerdfonts
       swww
+      tmux
     ];
 
     catppuccin.enable = true;
@@ -54,6 +56,10 @@
 
     programs = {
       home-manager.enable = true;
+      ranger.enable = true;
+      vscode.enable = true;
+      fish.enable = true;
+      kitty.enable = true;
       git = {
         enable = true;
         userEmail = "mrwbarg@gmail.com";
@@ -77,9 +83,6 @@
           };
         };
       };
-      vscode.enable = true;
-      fish.enable = true;
-      kitty.enable = true;
     };
   };
 }
