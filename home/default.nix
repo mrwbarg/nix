@@ -18,6 +18,13 @@
 
   home-manager.users.mrwbarg = { config, lib, ... }: {
 
+    gtk = {
+      iconTheme = {
+        package = pkgs.papirus-icon-theme;
+        name = "Papirus";
+      };
+    };
+
     stylix = {
       autoEnable = true;
       cursor = {
@@ -55,7 +62,7 @@
     };
 
     home.packages = with pkgs; [
-      ranger
+      xplr
       gnome.nautilus
       nerdfonts
       tmux

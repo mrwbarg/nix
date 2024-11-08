@@ -68,9 +68,6 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    fish
-    neovim
-    git
     nixpkgs-fmt
     (catppuccin-sddm.override {
       flavor = "mocha";

@@ -26,6 +26,7 @@
       gpu-screen-recorder
       grimblast
       hyprpicker
+      papirus-icon-theme
     ];
 
     home.file.".cache/ags/hyprpanel/profile.png" = {
