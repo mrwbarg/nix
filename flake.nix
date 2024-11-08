@@ -12,22 +12,19 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprpanel = {
+    hyprpanel-src = {
       url = "github:Jas-SinghFSU/HyprPanel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin = {
-      url = "github:catppuccin/nix";
-    };
+    stylix = {url = "github:danth/stylix/release-24.05";};
   };
 
-  outputs = { self, nixpkgs, home-manager, catppuccin, hyprpanel, ... } @ attrs:
+  outputs = { self, nixpkgs, home-manager, hyprpanel-src, stylix, ... } @ attrs:
     {
-
       nixosConfigurations.avell = nixpkgs.lib.nixosSystem {
         specialArgs = attrs;
         modules = [
-          catppuccin.nixosModules.catppuccin
+          stylix.nixosModules.stylix
           ./configuration
           ./home
           ./hosts/avell/avell.nix

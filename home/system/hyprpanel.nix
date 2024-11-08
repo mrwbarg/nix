@@ -1,13 +1,12 @@
-{ config, pkgs, home-manager, hyprpanel, ... }:
+{ config, pkgs, home-manager, hyprpanel-src, ... }:
 {
   imports = [
     home-manager.nixosModules.home-manager
   ];
 
   nixpkgs.overlays = [
-    hyprpanel.overlay
+    hyprpanel-src.overlay
   ];
-
 
   services.gvfs.enable = true;
   services.power-profiles-daemon.enable = true;
@@ -98,7 +97,7 @@
             "theme.bar.margin_bottom": "0em",
             "theme.bar.margin_sides": "0.6em",
             "bar.launcher.icon": "",
-            "theme.bar.buttons.dashboard.enableBorder": true,
+            "theme.bar.buttons.dashboard.nableBorder": true,
             "theme.bar.buttons.workspaces.enableBorder": false,
             "bar.workspaces.showAllActive": true,
             "theme.bar.buttons.workspaces.fontSize": "1.2em",

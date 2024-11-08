@@ -1,4 +1,4 @@
-{ config, pkgs, home-manager, catppuccin, attrs, lib, hyprpanel, ... }:
+{ config, pkgs, home-manager, attrs, lib, stylix, ... }:
 {
   imports = [
     home-manager.nixosModules.home-manager
@@ -11,20 +11,57 @@
   home-manager.useUserPackages = true;
   home-manager.backupFileExtension = "bak";
 
+  stylix = {
+    enable = true;
+    image = ./walpapers/abstract-swirls.jpg;
+  };
+
   home-manager.users.mrwbarg = { config, lib, ... }: {
-    imports = [
-      catppuccin.homeManagerModules.catppuccin
-    ];
+
+    stylix = {
+      autoEnable = true;
+      cursor = {
+        package = pkgs.catppuccin-cursors.mochaDark;
+        name = "catppuccin-mocha-dark-cursors";
+        size = 24;
+
+      };
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+      polarity = "dark";
+
+      fonts = {
+        serif = {
+           package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
+          name = "FiraCode Nerd Font";
+        };
+        sansSerif = {
+           package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
+          name = "FiraCode Nerd Font";
+          };
+        monospace = {
+          package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
+          name = "FiraCode Nerd Font";
+        };
+
+        sizes = {
+          applications = 10;
+          desktop = 10;
+          popups = 10;
+          terminal = 12;
+
+        };
+      };
+
+    };
 
     home.packages = with pkgs; [
       ranger
       gnome.nautilus
       nerdfonts
-      swww
       tmux
+      hyprcursor
     ];
 
-    catppuccin.enable = true;
 
     home = {
       stateVersion = "24.05";
@@ -35,23 +72,6 @@
     home.file.".local/share/walpapers" = {
       recursive = true;
       source = ./walpapers;
-    };
-
-    gtk = {
-      enable = true;
-      catppuccin.enable = true;
-      font = {
-        name = "FiraCode Nerd Font";
-        size = 10;
-      };
-
-    };
-
-    home.pointerCursor = {
-      gtk.enable = true;
-      name = "catppuccin-mocha-dark-cursors";
-      package = pkgs.catppuccin-cursors.mochaDark;
-      size = 24;
     };
 
     programs = {
