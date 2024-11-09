@@ -21,17 +21,12 @@
       bluez
       wl-clipboard
       brightnessctl
-      gnome.gnome-bluetooth
       power-profiles-daemon
       gpu-screen-recorder
       grimblast
       hyprpicker
       papirus-icon-theme
     ];
-
-    home.file.".cache/ags/hyprpanel/profile.png" = {
-      source = ../profile.png;
-    };
 
     home.file.".cache/ags/hyprpanel/options.json" = {
       text = # json
@@ -139,7 +134,7 @@
             "menus.volume.raiseMaximumVolume": true,
             "menus.clock.weather.location": "Rio de Janeiro",
             "menus.clock.weather.enabled": false,
-            "menus.dashboard.powermenu.avatar.image": "./profile.png",
+            "menus.dashboard.powermenu.avatar.image": "/home/mrwbarg/Pictures/profile.png",
             "menus.dashboard.stats.enable_gpu": false,
             "menus.dashboard.shortcuts.enabled": true,
             "menus.dashboard.directories.enabled": false,
