@@ -75,7 +75,17 @@
     pulseaudio.enable = false;
     bluetooth = {
       enable = true;
-      powerOnBoot = true;
+     settings = {
+      General = {
+        Name = "avell-nix";
+        ControllerMode = "dual";
+        FastConnectable = "true";
+        Experimental = "true";
+      };
+      Policy = {
+        AutoEnable = "true";
+      };
+    }; 
     };
     opengl.enable = true;
   };

@@ -136,12 +136,13 @@
             "menus.clock.weather.enabled": false,
             "menus.dashboard.powermenu.avatar.image": "/home/mrwbarg/Pictures/profile.png",
             "menus.dashboard.stats.enable_gpu": false,
-            "menus.dashboard.shortcuts.enabled": true,
+            "menus.dashboard.shortcuts.enabled": false,
             "menus.dashboard.directories.enabled": false,
             "theme.bar.menus.monochrome": false,
             "wallpaper.pywal": true,
             "theme.bar.transparent": true,
-            "theme.bar.buttons.style": "default"
+            "theme.bar.buttons.style": "default",
+            "bar.launcher.rightClick": "ags -t settings-dialog"
           }
         '';
     };
