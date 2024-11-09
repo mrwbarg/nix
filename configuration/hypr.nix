@@ -15,6 +15,8 @@
     opengl.enable = true;
     nvidia.modesetting.enable = true;
   };
+  
+  security.pam.services.hyprlock = {};
 
   xdg.portal.enable = true;
 }

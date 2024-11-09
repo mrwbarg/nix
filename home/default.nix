@@ -6,6 +6,7 @@
     ./system/hyprpanel.nix
     ./system/rofi/default.nix
     ./system/stylix.nix
+    ./system/hyprlock.nix
   ];
 
   home-manager.useGlobalPkgs = true;
@@ -32,6 +33,9 @@
     home.file.".local/share/walpapers" = {
       recursive = true;
       source = ./walpapers;
+    };
+    home.file."Pictures/profile.png" = {
+      source = ./profile.png;
     };
 
     programs = {

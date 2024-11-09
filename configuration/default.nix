@@ -6,16 +6,23 @@
 
 {
   imports = [
-    ./hyprland.nix
+    ./hypr.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader = {
+      grub = {
+        enable = true;
+      };
+      efi = {
+        canTouchEfiVariables = true;
+      };
+    };
+  };
 
   networking.networkmanager.enable = true;
-
   time.timeZone = "America/Sao_Paulo";
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -36,16 +43,16 @@
     excludePackages = with pkgs; [ xterm ];
   };
 
-  services = {
-    displayManager = {
-      sddm = {
-        theme = "catppuccin-mocha";
-        enable = true;
-        package = pkgs.kdePackages.sddm;
-      };
-
+  services.greetd = {
+  enable = true;
+  settings = rec {
+    initial_session = {
+      command = "hyprland";
+      user = "mrwbarg";
     };
+    default_session = initial_session;
   };
+};
 
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -69,17 +76,10 @@
 
   environment.systemPackages = with pkgs; [
     nixpkgs-fmt
-    (catppuccin-sddm.override {
-      flavor = "mocha";
-      font = "FiraCode Nerd Font";
-      fontSize = "10";
-      loginBackground = true;
-    })
-
   ];
 
   services.openssh.enable = true;
-
+  hardware.bluetooth.enable = true;
   system.stateVersion = "24.05";
 
 }

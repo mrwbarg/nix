@@ -70,6 +70,7 @@
         ];
 
         exec-once = [
+          "hyprlock"
           "hyprpanel"
         ];
       };
