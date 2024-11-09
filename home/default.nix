@@ -37,8 +37,23 @@
     programs = {
       home-manager.enable = true;
       vscode.enable = true;
-      fish.enable = true;
       kitty.enable = true;
+      fish = {
+        enable = true;
+        interactiveShellInit = ''
+          set fish_greeting
+        '';
+        plugins = with pkgs.fishPlugins; [
+          {
+            name = "pure";
+            inherit (pure) src;
+          }
+          {
+            name = "z";
+            inherit (z) src;
+          }
+        ];
+      };
       git = {
         enable = true;
         userEmail = "mrwbarg@gmail.com";

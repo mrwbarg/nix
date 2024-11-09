@@ -59,6 +59,14 @@
           "$mod SHIFT, L, movetoworkspace, +1"
           "$mod SHIFT, left, movetoworkspace, -1"
           "$mod SHIFT, right, movetoworkspace, +1"
+          "$mod CTRL, left, swapwindow, l"
+          "$mod CTRL, up, swapwindow, u"
+          "$mod CTRL, down, swapwindow, d"
+          "$mod CTRL, right, swapwindow, r"
+          "$mod CTRL, a, resizeactive, -10 0"
+          "$mod CTRL, w, resizeactive, 0 -10"
+          "$mod CTRL, s, resizeactive, 0 10"
+          "$mod CTRL, d, resizeactive, 10 0"
         ];
 
         exec-once = [
