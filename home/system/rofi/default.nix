@@ -38,15 +38,15 @@
                 width = 800;
                 font = "FiraCode Nerd Font 12";
             };
+            "element-text, element-icon, mode-switcher" = {
+                background-color = mkLiteral "inherit";
+                text-color = mkLiteral "inherit";
+            };
             "window" = {
                 height = mkLiteral "360px";
                 border = mkLiteral "3px";
                 border-color = mkLiteral "@border-col";
                 background-color = mkLiteral "@bg-col";
-            };
-            "element-text, element-icon, mode-switcher" = {
-                background-color = mkLiteral "inherit";
-                text-color = mkLiteral "inherit";
             };
             "mainbox" = {
                 background-color = mkLiteral "@bg-col";

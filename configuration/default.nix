@@ -73,7 +73,10 @@
 
   hardware = {
     pulseaudio.enable = false;
-    bluetooth.enable = true;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
     opengl.enable = true;
   };
 
