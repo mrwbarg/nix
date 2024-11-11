@@ -13,9 +13,7 @@
 
   boot = {
     loader = {
-      grub = {
-        efiSupport = true;
-        device = "nodev";
+      systemd-boot = {
         enable = true;
       };
       efi = {
