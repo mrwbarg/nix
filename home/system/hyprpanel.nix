@@ -29,7 +29,7 @@
     ];
 
     home.file.".cache/ags/hyprpanel/options.json" = {
-      text = # json
+      text =
         ''
           {
             "bar.layouts": {
