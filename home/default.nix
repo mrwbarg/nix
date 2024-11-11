@@ -42,6 +42,12 @@
       home-manager.enable = true;
       vscode.enable = true;
       kitty.enable = true;
+      xplr = {
+        enable = true;
+        extraConfig = ''
+          xplr.config.general.show_hidden = true
+        '';
+      };
       fish = {
         enable = true;
         interactiveShellInit = ''
