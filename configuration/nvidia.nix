@@ -1,13 +1,15 @@
 { config, lib, pkgs, ... }:
 
 {
-  programs.lshw.enable = true;
-  
-  hardware.graphics = {
+  environment.systemPackages = with pkgs; [
+    lshw
+  ];
+
+  hardware.opengl = {
     enable = true;
   };
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -16,5 +18,10 @@
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+    prime = {
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
+      sync.enable = true;
+    };
   };
 }

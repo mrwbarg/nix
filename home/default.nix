@@ -4,7 +4,7 @@
     home-manager.nixosModules.home-manager
     ./system/hyprland.nix
     ./system/hyprpanel.nix
-    ./system/rofi/default.nix
+    ./system/rofi.nix
     ./system/stylix.nix
     ./system/hyprlock.nix
   ];
