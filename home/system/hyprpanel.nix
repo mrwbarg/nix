@@ -14,7 +14,7 @@
 
   home-manager.users.mrwbarg = {
     home.packages = with pkgs; [
-hyprpanel
+      hyprpanel
       networkmanager
       pipewire
       libgtop
