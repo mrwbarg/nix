@@ -2,7 +2,7 @@
 {
 
   home-manager.users.mrwbarg = { config, lib, ... }: {
-    programs.hypridle = {
+    services.hypridle = {
       enable = true;
 
       settings = {
@@ -25,4 +25,5 @@
         ];
       };
     };
-  }
+  };
+}
