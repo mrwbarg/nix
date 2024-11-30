@@ -7,6 +7,7 @@
     ./system/rofi.nix
     ./system/stylix.nix
     ./system/hyprlock.nix
+    ./system/hypridle.nix
   ];
 
   home-manager.useGlobalPkgs = true;

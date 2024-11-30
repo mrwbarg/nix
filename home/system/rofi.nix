@@ -7,10 +7,6 @@
 
 
   home-manager.users.mrwbarg = { config, lib, ... }: {
-    home.file.".local/share/rofi/themes" = {
-      recursive = true;
-      source = ./themes;
-    };
     programs = {
       rofi = {
         enable = true;
