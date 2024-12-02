@@ -16,7 +16,6 @@
 
 
   home-manager.users.mrwbarg = { config, lib, ... }: {
-
     home.packages = with pkgs; [
       xplr
       gnome.nautilus
@@ -39,10 +38,20 @@
       source = ./profile.png;
     };
 
+    home.activation.configure-tide = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      ${pkgs.fish}/bin/fish -c "tide configure --auto --style=Lean --prompt_colors='16 colors' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Dotted --prompt_spacing=Sparse --icons='Many icons' --transient=Yes"
+    '';
+
     programs = {
       home-manager.enable = true;
       vscode.enable = true;
-      kitty.enable = true;
+      kitty = {
+        enable = true;
+        settings = {
+          scrollback_lines = 10000;
+          window_padding_width = 4;
+        };
+      };
       xplr = {
         enable = true;
         extraConfig = ''
@@ -56,14 +65,18 @@
         '';
         plugins = with pkgs.fishPlugins; [
           {
-            name = "pure";
-            inherit (pure) src;
+            name = "tide";
+            inherit (tide) src;
           }
           {
             name = "z";
             inherit (z) src;
           }
         ];
+      };
+      tmux = {
+        enable = true;
+        shell = "${pkgs.fish}/bin/fish";
       };
       git = {
         enable = true;
