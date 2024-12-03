@@ -78,6 +78,14 @@
           ", switch:on:Lid Switch, exec, hyprlock --immediate & disown && hyprctl dispatch dpms off"
           ", sswitch:off:Lid Switch, exec, hyprctl dispatch dpms on"
         ];
+        binde = [
+          # function keys
+          "$mod, F8, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle"
+          "$mod, F9, exec, pactl set-sink-volume @DEFAULT_SINK@ -1%"
+          "$mod, F10, exec, pactl set-sink-volume @DEFAULT_SINK@ +1%"
+          "$mod, F11, exec, brightnessctl set 1%-"
+          "$mod, F12, exec, brightnessctl set 1%+"
+        ];
         
 
         exec-once = [

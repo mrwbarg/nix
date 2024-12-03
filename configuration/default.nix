@@ -104,6 +104,7 @@
 
   environment.systemPackages = with pkgs; [
     nixpkgs-fmt
+    pulseaudio
   ];
 
   system.stateVersion = "24.05";
