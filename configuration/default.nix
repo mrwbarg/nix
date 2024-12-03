@@ -92,6 +92,7 @@
   security.rtkit.enable = true;
 
   programs.fish.enable = true;
+  programs.tmux.enable = true;
   users.users.mrwbarg = {
     isNormalUser = true;
     description = "Mauricio Barg";

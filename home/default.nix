@@ -20,8 +20,8 @@
       xplr
       gnome.nautilus
       nerdfonts
-      tmux
       hyprcursor
+      fish
     ];
 
     home = {
@@ -42,6 +42,11 @@
       ${pkgs.fish}/bin/fish -c "tide configure --auto --style=Lean --prompt_colors='16 colors' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Dotted --prompt_spacing=Sparse --icons='Many icons' --transient=Yes"
     '';
 
+    home.shellAliases = {
+      zj = "zellij";
+      ls = "ls -lah";
+    };
+
     programs = {
       home-manager.enable = true;
       vscode.enable = true;
@@ -50,6 +55,9 @@
         settings = {
           scrollback_lines = 10000;
           window_padding_width = 4;
+        };
+        shellIntegration = {
+          enableFishIntegration = true;
         };
       };
       xplr = {
@@ -74,9 +82,8 @@
           }
         ];
       };
-      tmux = {
+      zellij = {
         enable = true;
-        shell = "${pkgs.fish}/bin/fish";
       };
       git = {
         enable = true;
