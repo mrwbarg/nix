@@ -74,6 +74,10 @@
           # resize
           "$mod ALT, R, submap, resize"
         ];
+        bindl = [
+          ", switch:on:Lid Switch, exec, hyprlock --immediate & disown && hyprctl dispatch dpms off"
+          ", sswitch:off:Lid Switch, exec, hyprctl dispatch dpms on"
+        ];
         
 
         exec-once = [
