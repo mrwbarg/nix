@@ -73,6 +73,7 @@
           "$mod CTRL, L, swapwindow, r"
           # resize
           "$mod ALT, R, submap, resize"
+          "$mod, Print, exec, grimblast --notify --cursor copy area"
         ];
         bindl = [
           ", switch:on:Lid Switch, exec, hyprlock --immediate & disown && hyprctl dispatch dpms off"

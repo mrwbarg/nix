@@ -142,7 +142,7 @@
             "wallpaper.pywal": true,
             "theme.bar.transparent": true,
             "theme.bar.buttons.style": "default",
-            "bar.launcher.rightClick": "ags -t settings-dialog"
+            "bar.launcher.rightClick": "hyprpanel -t settings-dialog"
           }
         '';
     };
