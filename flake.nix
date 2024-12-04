@@ -14,7 +14,6 @@
     };
     hyprpanel-src = {
       url = "github:Jas-SinghFSU/HyprPanel";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {url = "github:danth/stylix/release-24.05";};
     nvchad4nix = {
