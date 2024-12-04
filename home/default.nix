@@ -1,4 +1,4 @@
-{ config, pkgs, home-manager, attrs, lib, stylix, ... }:
+{ config, pkgs, nixpkgs-unstable, home-manager, attrs, lib, stylix, nvchad4nix, ... }:
 {
   imports = [
     home-manager.nixosModules.home-manager
@@ -15,7 +15,23 @@
   home-manager.backupFileExtension = "bak";
 
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      nvchad = nvchad4nix.packages."${pkgs.system}".nvchad;
+    })
+    (final: _prev: {
+      unstable = import nixpkgs-unstable {
+        system = final.system;
+        config.allowUnfree = true;
+      };
+    })
+  ];
+
+
   home-manager.users.mrwbarg = { config, lib, ... }: {
+    imports = [
+      nvchad4nix.homeManagerModule
+    ];
     home.packages = with pkgs; [
       xplr
       gnome.nautilus
@@ -38,7 +54,7 @@
       source = ./profile.png;
     };
 
-    home.activation.configure-tide = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    home.activation.configure-tide = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       ${pkgs.fish}/bin/fish -c "tide configure --auto --style=Lean --prompt_colors='16 colors' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Dotted --prompt_spacing=Sparse --icons='Many icons' --transient=Yes"
     '';
 
@@ -49,6 +65,11 @@
 
     programs = {
       home-manager.enable = true;
+      nvchad = {
+        enable = true;
+        neovim = pkgs.unstable.neovim;
+        hm-activation = true;
+      };
       vscode.enable = true;
       kitty = {
         enable = true;
