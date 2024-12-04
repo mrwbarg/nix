@@ -38,6 +38,8 @@
       nerdfonts
       hyprcursor
       fish
+      lazygit
+      lazydocker
     ];
 
     home = {
@@ -111,6 +113,7 @@
         userEmail = "mrwbarg@gmail.com";
         userName = "Mauricio Barg";
       };
+      lazygit.enable = true;
       firefox = {
         enable = true;
         policies = {
