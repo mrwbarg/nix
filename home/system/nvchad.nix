@@ -1,5 +1,4 @@
-
-{ config, pkgs, nixpkgs-unstable, home-manager, attrs, lib, nvchad4nix, nvchad-starter,... }:
+{ config, pkgs, nixpkgs-unstable, home-manager, attrs, lib, nvchad4nix, ... }:
 {
 
   nixpkgs.overlays = [
@@ -20,11 +19,16 @@
       nvchad4nix.homeManagerModule
     ];
     
-    home.packages = [
+    home.packages = with pkgs; [
       (pkgs.nvchad.override {
-        extraConfig = nvchad-starter;
         neovim = pkgs.unstable.neovim;
       })
+      stylua
+      nixd
+      ruff
+      deadnix
+      python3
+      go
     ];
   };
 }
