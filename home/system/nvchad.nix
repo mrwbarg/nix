@@ -23,6 +23,7 @@
     home.packages = [
       (pkgs.nvchad.override {
         extraConfig = nvchad-starter;
+        neovim = pkgs.unstable.neovim;
       })
     ];
   };
