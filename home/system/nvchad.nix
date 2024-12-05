@@ -1,5 +1,5 @@
 
-{ config, pkgs, nixpkgs-unstable, home-manager, attrs, lib, stylix, nvchad4nix, ... }:
+{ config, pkgs, nixpkgs-unstable, home-manager, attrs, lib, nvchad4nix, nvchad-starter,... }:
 {
 
   nixpkgs.overlays = [
@@ -19,35 +19,11 @@
     imports = [
       nvchad4nix.homeManagerModule
     ];
-
-    programs = {
-      nvchad = {
-        enable = true;
-        neovim = pkgs.unstable.neovim;
-        hm-activation = true;  
-        extraPlugins = ''return {
-          {
-            "kdheepak/lazygit.nvim",
-            cmd = {
-              "LazyGit",
-              "LazyGitConfig",  
-              "LazyGitCurrentFile",
-              "LazyGitFilter",
-              "LazyGitFilterCurrentFile",
-            },
-            dependencies = {
-              "nvim-lua/plenary.nvim",
-            },
-            keys = {
-              { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-            },
-          },
-          {
-            "github/copilot.vim",
-            cmd = { "Copilot" },
-          },
-        }'';
-      };
-    };
+    
+    home.packages = [
+      (pkgs.nvchad.override {
+        extraConfig = nvchad-starter;
+      })
+    ];
   };
 }

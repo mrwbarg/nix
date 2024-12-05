@@ -326,6 +326,22 @@
     "nvchad-starter": {
       "flake": false,
       "locked": {
+        "lastModified": 1733429853,
+        "narHash": "sha256-SVpep7lVX0isYsUtscvgA7Ga3YXt/2jwQQCYkYadjiM=",
+        "owner": "mrwbarg",
+        "repo": "nvchad-starter",
+        "rev": "a5dd321d5e11a157f6c97fa8b43d3c872c0ff557",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mrwbarg",
+        "repo": "nvchad-starter",
+        "type": "github"
+      }
+    },
+    "nvchad-starter_2": {
+      "flake": false,
+      "locked": {
         "lastModified": 1728129783,
         "narHash": "sha256-SVpep7lVX0isYsUtscvgA7Ga3YXt/2jwQQCYkYadjiM=",
         "owner": "NvChad",
@@ -345,7 +361,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nvchad-starter": "nvchad-starter"
+        "nvchad-starter": "nvchad-starter_2"
       },
       "locked": {
         "lastModified": 1733140987,
@@ -367,6 +383,7 @@
         "hyprpanel-src": "hyprpanel-src",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "nvchad-starter": "nvchad-starter",
         "nvchad4nix": "nvchad4nix",
         "stylix": "stylix"
       }

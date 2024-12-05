@@ -20,6 +20,10 @@
       url = "github:nix-community/nix4nvchad";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nvchad-starter = { 
+      url = "github:mrwbarg/nvchad-starter";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, hyprpanel-src, stylix, nvchad4nix, nixpkgs-unstable, ... } @ attrs:
