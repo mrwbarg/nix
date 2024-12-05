@@ -8,6 +8,7 @@
     ./system/stylix.nix
     ./system/hyprlock.nix
     ./system/hypridle.nix
+    ./system/nvchad.nix
   ];
 
   home-manager.useGlobalPkgs = true;
@@ -16,9 +17,6 @@
 
 
   nixpkgs.overlays = [
-    (final: prev: {
-      nvchad = nvchad4nix.packages."${pkgs.system}".nvchad;
-    })
     (final: _prev: {
       unstable = import nixpkgs-unstable {
         system = final.system;
@@ -29,9 +27,6 @@
 
 
   home-manager.users.mrwbarg = { config, lib, ... }: {
-    imports = [
-      nvchad4nix.homeManagerModule
-    ];
     home.packages = with pkgs; [
       xplr
       gnome.nautilus
@@ -67,11 +62,6 @@
 
     programs = {
       home-manager.enable = true;
-      nvchad = {
-        enable = true;
-        neovim = pkgs.unstable.neovim;
-        hm-activation = true;
-      };
       vscode.enable = true;
       kitty = {
         enable = true;
