@@ -40,7 +40,11 @@
             },
             keys = {
               { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-            }
+            },
+          },
+          {
+            "github/copilot.vim",
+            cmd = { "Copilot" },
           },
         }'';
       };
