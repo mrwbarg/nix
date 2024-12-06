@@ -1,4 +1,4 @@
-{ config, pkgs, nixpkgs-unstable, home-manager, attrs, lib, stylix, nvchad4nix, ... }:
+{ config, pkgs, nixpkgs-unstable, home-manager, lib, ... }:
 {
   imports = [
     home-manager.nixosModules.home-manager

@@ -32,8 +32,8 @@
         specialArgs = attrs;
         modules = [
           stylix.nixosModules.stylix
-          ./configuration
-          ./home
+          ./configuration/nixos
+          ./home/nixos.nix
           ./hosts/avell/avell.nix
         ];
       };

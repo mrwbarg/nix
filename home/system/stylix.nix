@@ -1,4 +1,4 @@
-{ config, pkgs, home-manager, stylix, ... }:
+{ pkgs, home-manager, stylix, ... }:
 {
 
 

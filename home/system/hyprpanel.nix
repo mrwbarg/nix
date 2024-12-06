@@ -1,4 +1,4 @@
-{ config, pkgs, home-manager, hyprpanel-src, ... }:
+{ pkgs, home-manager, hyprpanel-src, ... }:
 {
   imports = [
     home-manager.nixosModules.home-manager

@@ -1,4 +1,4 @@
-{ config, pkgs, nixpkgs-unstable, home-manager, attrs, lib, nvchad4nix, ... }:
+{ config, pkgs, nixpkgs-unstable, home-manager, nvchad4nix, ... }:
 {
 
   nixpkgs.overlays = [
