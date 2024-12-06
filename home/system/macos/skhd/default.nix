@@ -1,13 +1,13 @@
 { pkgs, home-manager-master, ... }:
 {
   environment.systemPackages = with pkgs; [ 
-    yabai
+    skhd
   ];
-  services.yabai.enable = true;
+  services.skhd.enable = true;
 
   home-manager.users."mauriciobarg" = {
     xdg.configFile = {
-      "yabai/yabairc".source = ./yabairc;
+      "skhd/skhdrc".source = ./skhdrc;
     };
   };
  

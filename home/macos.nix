@@ -4,6 +4,7 @@
     home-manager-master.darwinModules.home-manager
     ./system/macos/stylix.nix
     ./system/macos/yabai
+    ./system/macos/skhd
   ];
 
   home-manager.useGlobalPkgs = true;
