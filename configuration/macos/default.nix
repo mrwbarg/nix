@@ -7,6 +7,8 @@ let
 in
 {
   nixpkgs.config = { allowUnfree = true; allowBroken = true; };
+  nixpkgs.hostPlatform = "aarch64-darwin";
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = 4;
 
@@ -20,5 +22,9 @@ in
     home = "/Users/mauriciobarg";
     shell = pkgs.fish;
   };
+
+  environment.systemPackages = with pkgs; [
+    nixpkgs-fmt
+  ];
 
 }

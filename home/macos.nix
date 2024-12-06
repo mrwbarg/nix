@@ -1,4 +1,4 @@
-{ config, pkgs, nixpkgs-unstable, home-manager, lib, ... }:
+{ config, pkgs, nixpkgs-unstable, home-manager, ghostscript-fix, lib, ... }:
 {
   imports = [
     home-manager.darwinModules.home-manager
@@ -16,6 +16,10 @@
         config.allowUnfree = true;
       };
     })
+     (final: prev: {
+      ghostscript = ghostscript-fix.legacyPackages.${prev.system}.ghostscript;
+     }
+     )
   ];
 
 
@@ -26,10 +30,13 @@
       fish
       lazygit
       lazydocker
+      zellij
+      fishPlugins.tide
+      fishPlugins.z
     ];
 
     home = {
-      stateVersion = "${config.system.stateVersion}";
+      stateVersion = "24.05";
       username = "mauriciobarg";
       homeDirectory = "/Users/mauriciobarg";
     };
@@ -46,6 +53,7 @@
     home.shellAliases = {
       zj = "zellij";
       ls = "ls -lah";
+      
     };
 
     programs = {
@@ -59,6 +67,10 @@
         };
         shellIntegration = {
           enableFishIntegration = true;
+        };
+        font = {
+          size = 16;
+          name = "FiraCode Nerd Font";
         };
       };
       xplr = {

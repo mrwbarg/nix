@@ -28,9 +28,12 @@
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ghostscript-fix = {
+      url = "github:carlocab/nixpkgs/0b961bd"; 
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprpanel-src, stylix, nvchad4nix, nixpkgs-unstable, darwin, ... } @ attrs:
+  outputs = { self, nixpkgs, home-manager, hyprpanel-src, stylix, nvchad4nix, nixpkgs-unstable, ghostscript-fix, darwin, ... } @ attrs:
     {
       nixosConfigurations.avell = nixpkgs.lib.nixosSystem {
         specialArgs = attrs;
