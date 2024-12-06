@@ -24,9 +24,13 @@
         flake = false;
       };
     };
+    darwin = {
+      url = "github:lnl7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprpanel-src, stylix, nvchad4nix, nixpkgs-unstable, ... } @ attrs:
+  outputs = { self, nixpkgs, home-manager, hyprpanel-src, stylix, nvchad4nix, nixpkgs-unstable, darwin, ... } @ attrs:
     {
       nixosConfigurations.avell = nixpkgs.lib.nixosSystem {
         specialArgs = attrs;
@@ -38,5 +42,12 @@
         ];
       };
 
+      darwinConfigurations.work = darwin.lib.darwinSystem {
+        specialArgs = attrs;
+        modules = [
+          ./configuration/macos
+          ./home/macos.nix
+        ];
+      };
     };
 }
