@@ -2,13 +2,13 @@
 {
   imports = [
     home-manager.nixosModules.home-manager
-    ./system/hyprland.nix
-    ./system/hyprpanel.nix
-    ./system/rofi.nix
-    ./system/stylix.nix
-    ./system/hyprlock.nix
-    ./system/hypridle.nix
-    ./system/nvchad.nix
+    ./system/nixos/hyprland.nix
+    ./system/nixos/hyprpanel.nix
+    ./system/nixos/rofi.nix
+    ./system/nixos/stylix.nix
+    ./system/nixos/hyprlock.nix
+    ./system/nixos/hypridle.nix
+    ./system/nixos/nvchad.nix
   ];
 
   home-manager.useGlobalPkgs = true;
