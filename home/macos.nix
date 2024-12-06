@@ -36,6 +36,7 @@
       zellij
       fishPlugins.tide
       fishPlugins.z
+      btop
     ];
 
     home = {

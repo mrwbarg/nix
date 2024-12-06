@@ -35,6 +35,7 @@
       fish
       lazygit
       lazydocker
+      btop
     ];
 
     home = {
