@@ -1,7 +1,8 @@
-{ config, pkgs, nixpkgs-unstable, home-manager, ghostscript-fix, lib, ... }:
+{ config, pkgs, nixpkgs-unstable, home-manager-master, ghostscript-fix, lib, ... }:
 {
   imports = [
-    home-manager.darwinModules.home-manager
+    home-manager-master.darwinModules.home-manager
+    ./system/macos/stylix.nix
   ];
 
   home-manager.useGlobalPkgs = true;
@@ -16,17 +17,17 @@
         config.allowUnfree = true;
       };
     })
-     (final: prev: {
+    (final: prev: {
       ghostscript = ghostscript-fix.legacyPackages.${prev.system}.ghostscript;
-     }
-     )
+    }
+    )
   ];
 
 
   home-manager.users."mauriciobarg" = { config, lib, ... }: {
     home.packages = with pkgs; [
       xplr
-      nerdfonts
+      nerd-fonts.fira-code
       fish
       lazygit
       lazydocker
@@ -53,25 +54,14 @@
     home.shellAliases = {
       zj = "zellij";
       ls = "ls -lah";
-      
+
     };
 
     programs = {
       home-manager.enable = true;
       vscode.enable = true;
-      kitty = {
+      alacritty = {
         enable = true;
-        settings = {
-          scrollback_lines = 10000;
-          window_padding_width = 4;
-        };
-        shellIntegration = {
-          enableFishIntegration = true;
-        };
-        font = {
-          size = 16;
-          name = "FiraCode Nerd Font";
-        };
       };
       xplr = {
         enable = true;

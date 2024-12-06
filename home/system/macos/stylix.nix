@@ -1,4 +1,4 @@
-{ pkgs, home-manager, stylix, ... }:
+{ pkgs, home-manager-master, stylix, ... }:
 {
 
 
@@ -7,17 +7,11 @@
     image = ../../walpapers/abstract-swirls.jpg;
   };
 
-  home-manager.users.mrwbarg = { config, lib, ... }: {
-
-    gtk = {
-      iconTheme = {
-        package = pkgs.papirus-icon-theme;
-        name = "Papirus";
-      };
-    };
+  home-manager.users."mauriciobarg" = { config, lib, ... }: {
 
     stylix = {
       autoEnable = true;
+      targets.vscode.enable = false;
       cursor = {
         package = pkgs.catppuccin-cursors.mochaDark;
         name = "catppuccin-mocha-dark-cursors";
@@ -28,23 +22,23 @@
 
       fonts = {
         serif = {
-          package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
+          package = pkgs.nerd-fonts.fira-code;
           name = "FiraCode Nerd Font";
         };
         sansSerif = {
-          package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
+          package = pkgs.nerd-fonts.fira-code;
           name = "FiraCode Nerd Font";
         };
         monospace = {
-          package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
+          package = pkgs.nerd-fonts.fira-code;
           name = "FiraCode Nerd Font";
         };
 
         sizes = {
-          applications = 10;
-          desktop = 10;
-          popups = 10;
-          terminal = 12;
+          applications = 14;
+          desktop = 14;
+          popups = 14;
+          terminal = 16;
         };
       };
     };
