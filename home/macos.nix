@@ -3,6 +3,7 @@
   imports = [
     home-manager-master.darwinModules.home-manager
     ./system/macos/stylix.nix
+    ./system/macos/yabai
   ];
 
   home-manager.useGlobalPkgs = true;
@@ -55,13 +56,30 @@
       zj = "zellij";
       ls = "ls -lah";
 
+      ssh-staging = "aptible ssh --app=homebase-staging";
+      ssh-prod = "aptible ssh --app=homebase-two-prod";
+      db-prod = "aft rds tunnel -d production";
+      db-staging = "aft rds tunnel -d staging";
+      db-replica = "aft rds tunnel -d replica";
+      wh-prod = "aft rds tunnel -d production";
+      wh-redhouse = "aft rds tunnel -d redhouse-prod";
+      venv = "source .venv/bin/activate.fish";
     };
 
     programs = {
       home-manager.enable = true;
-      vscode.enable = true;
+      vscode.enable = false;
       alacritty = {
         enable = true;
+        settings = {
+          terminal.shell = {
+            program = "${pkgs.fish}/bin/fish";
+          };
+          window = {
+            opacity = lib.mkForce 0.5;
+            blur = true;
+          };
+        };
       };
       xplr = {
         enable = true;
@@ -73,6 +91,8 @@
         enable = true;
         interactiveShellInit = ''
           set fish_greeting
+          direnv hook fish | source
+          export DIRENV_LOG_FORMAT=""
         '';
         plugins = with pkgs.fishPlugins; [
           {
@@ -87,6 +107,10 @@
       };
       zellij = {
         enable = true;
+        enableFishIntegration = true;
+        settings = {
+          default_shell = "${pkgs.fish}/bin/fish";
+        };
       };
       git = {
         enable = true;

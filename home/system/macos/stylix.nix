@@ -12,11 +12,6 @@
     stylix = {
       autoEnable = true;
       targets.vscode.enable = false;
-      cursor = {
-        package = pkgs.catppuccin-cursors.mochaDark;
-        name = "catppuccin-mocha-dark-cursors";
-        size = 24;
-      };
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
       polarity = "dark";
 
