@@ -5,12 +5,12 @@
     ./system/macos/stylix.nix
     ./system/macos/yabai
     ./system/macos/skhd
+    ./system/macos/sketchybar
   ];
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.backupFileExtension = "bak";
-
 
   nixpkgs.overlays = [
     (final: _prev: {

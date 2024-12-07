@@ -19,8 +19,8 @@
     hyprpanel-src = {
       url = "github:Jas-SinghFSU/HyprPanel";
     };
-    stylix = {url = "github:danth/stylix/release-24.05";};
-    stylix-master = {url = "github:danth/stylix";};
+    stylix = { url = "github:danth/stylix/release-24.05"; };
+    stylix-master = { url = "github:danth/stylix"; };
     nvchad4nix = {
       url = "github:nix-community/nix4nvchad";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,11 +34,24 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     ghostscript-fix = {
-      url = "github:carlocab/nixpkgs/0b961bd"; 
+      url = "github:carlocab/nixpkgs/0b961bd";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprpanel-src, stylix, nvchad4nix, nixpkgs-unstable, stylix-master, home-manager-master, ghostscript-fix, darwin, ... } @ attrs:
+  outputs =
+    { self
+    , nixpkgs
+    , home-manager
+    , hyprpanel-src
+    , stylix
+    , nvchad4nix
+    , nixpkgs-unstable
+    , stylix-master
+    , home-manager-master
+    , ghostscript-fix
+    , darwin
+    , ...
+    } @ attrs:
     {
       nixosConfigurations.avell = nixpkgs.lib.nixosSystem {
         specialArgs = attrs;
