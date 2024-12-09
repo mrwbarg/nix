@@ -6,6 +6,7 @@
     ./system/macos/yabai
     ./system/macos/skhd
     ./system/macos/sketchybar
+    ./system/macos/nvchad.nix
   ];
 
   home-manager.useGlobalPkgs = true;
