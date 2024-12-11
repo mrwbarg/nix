@@ -96,6 +96,7 @@
           set fish_greeting
           direnv hook fish | source
           export DIRENV_LOG_FORMAT=""
+          set EDITOR nvim
         '';
         plugins = with pkgs.fishPlugins; [
           {
