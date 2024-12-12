@@ -97,6 +97,11 @@
           direnv hook fish | source
           export DIRENV_LOG_FORMAT=""
           set EDITOR nvim
+
+          export PATH="/opt/aptible-toolbelt/bin:$PATH"
+          export PATH="$HOME/.docker/bin:$PATH"
+          export GOPATH="$HOME/go"
+          export PATH="$GOPATH/bin:$PATH"
         '';
         plugins = with pkgs.fishPlugins; [
           {
