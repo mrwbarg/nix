@@ -305,22 +305,6 @@
         "type": "github"
       }
     },
-    "ghostscript-fix": {
-      "locked": {
-        "lastModified": 1733456370,
-        "narHash": "sha256-ECmi1vo8mX8rfpzdDR/pPDj2GfjP7Kkh5MzH0rLtJlI=",
-        "owner": "carlocab",
-        "repo": "nixpkgs",
-        "rev": "0b961bd05d74b565cbd418c6ad8fb76e407693cc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "carlocab",
-        "ref": "0b961bd",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "gnome-shell": {
       "flake": false,
       "locked": {
@@ -594,7 +578,6 @@
     "root": {
       "inputs": {
         "darwin": "darwin",
-        "ghostscript-fix": "ghostscript-fix",
         "home-manager": "home-manager",
         "home-manager-master": "home-manager-master",
         "hyprpanel-src": "hyprpanel-src",

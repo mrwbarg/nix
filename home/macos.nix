@@ -1,4 +1,4 @@
-{ config, pkgs, nixpkgs-unstable, home-manager-master, ghostscript-fix, lib, ... }:
+{ config, pkgs, nixpkgs-unstable, home-manager-master, lib, ... }:
 {
   imports = [
     home-manager-master.darwinModules.home-manager
@@ -20,10 +20,6 @@
         config.allowUnfree = true;
       };
     })
-    (final: prev: {
-      ghostscript = ghostscript-fix.legacyPackages.${prev.system}.ghostscript;
-    }
-    )
   ];
 
 

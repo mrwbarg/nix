@@ -33,9 +33,6 @@
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    ghostscript-fix = {
-      url = "github:carlocab/nixpkgs/0b961bd";
-    };
   };
 
   outputs =
@@ -48,7 +45,6 @@
     , nixpkgs-unstable
     , stylix-master
     , home-manager-master
-    , ghostscript-fix
     , darwin
     , ...
     } @ attrs:
