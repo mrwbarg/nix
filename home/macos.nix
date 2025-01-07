@@ -98,6 +98,7 @@
           export PATH="$HOME/.docker/bin:$PATH"
           export GOPATH="$HOME/go"
           export PATH="$GOPATH/bin:$PATH"
+          export PATH="/opt/homebrew/bin:$PATH"
         '';
         plugins = with pkgs.fishPlugins; [
           {
